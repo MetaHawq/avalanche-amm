@@ -1,4 +1,4 @@
-# avalanche-amm
+# polygon-amm
 
 Steps to run the application in your local machine:-
 * Clone this repo:

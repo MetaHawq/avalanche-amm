@@ -11,10 +11,10 @@ contract AMM {
     uint256 totalToken2;  
     uint256 K;           
 
-    uint256 constant PRECISION = 1_000_000;  // Precision of 6 digits
+    uint256 constant PRECISION = 1_000_000;  
 
-    mapping(address => uint256) shares;  // Stores the share holding of each provider
-
+    mapping(address => uint256) shares;
+    
     mapping(address => uint256) token1Balance;
     mapping(address => uint256) token2Balance;
 

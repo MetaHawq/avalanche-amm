@@ -5,7 +5,7 @@ import BoxTemplate from "./BoxTemplate";
 import { PRECISION } from "../constants";
 
 export default function SwapComponent(props) {
-    const [coin, setCoin] = useState(["KAR", "KOTHI"]);
+    const [coin, setCoin] = useState(["BLOOM", "TECH"]);
     const [amountFrom, setAmountFrom] = useState(0.0);
     const [amountTo, setAmountTo] = useState(0.0);
 
@@ -20,7 +20,7 @@ export default function SwapComponent(props) {
         if (props.contract !== null) {
             try {
                 let estimateOfAmountTo;
-                if (coin[0] === "KAR") {
+                if (coin[0] === "BLOOM") {
                     estimateOfAmountTo = await props.contract.getSwapToken1Estimate(
                         val * PRECISION
                     );
@@ -42,7 +42,7 @@ export default function SwapComponent(props) {
         if (props.contract !== null) {
             try {
                 let estimateOfAmountFrm;
-                if (coin[0] === "KAR") {
+                if (coin[0] === "BLOOM") {
                     estimateOfAmountFrm =
                         await props.contract.getSwapToken1EstimateGivenToken2(
                             val * PRECISION
@@ -82,7 +82,7 @@ export default function SwapComponent(props) {
         } else {
             try {
                 let response;
-                if (coin[0] === "KAR") {
+                if (coin[0] === "BLOOM") {
                     response = await props.contract.swapToken1(amountFrom * PRECISION);
                 } else {
                     response = await props.contract.swapToken2(amountFrom * PRECISION);

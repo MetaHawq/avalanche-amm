@@ -42,11 +42,11 @@ export default function App() {
     return (
         <div className="pageBody">
             <div className="navBar">
-                <div className="appName"> AMM </div>
+                <div className="appName"> BloomSwap </div>
                 {myContract === null ? (
                     <div className="connectBtn" onClick={() => connect()}>
                         {" "}
-                        Connect to Metamask{" "}
+                        Fuji Avax Network Metamask{" "}
                     </div>
                 ) : (
                     <div className="connected"> {"Connected to " + address} </div>

@@ -5,8 +5,8 @@ import BoxTemplate from "./BoxTemplate";
 import { PRECISION } from "../constants";
 
 export default function ProvideComponent(props) {
-    const [amountOfKar, setAmountOfKar] = useState(0);
-    const [amountOfKothi, setAmountOfKothi] = useState(0);
+    const [amountOfBLOOM, setAmountOfBLOOM] = useState(0);
+    const [amountOfTECH, setAmountOfTECH] = useState(0);
     const [error, setError] = useState("");
 
     const getProvideEstimate = async (token, value) => {
@@ -14,16 +14,16 @@ export default function ProvideComponent(props) {
         if (props.contract !== null) {
             try {
                 let estimate;
-                if (token === "KAR") {
+                if (token === "BLOOM") {
                     estimate = await props.contract.getEquivalentToken2Estimate(
                         value * PRECISION
                     );
-                    setAmountOfKothi(estimate / PRECISION);
+                    setAmountOfTECH(estimate / PRECISION);
                 } else {
                     estimate = await props.contract.getEquivalentToken1Estimate(
                         value * PRECISION
                     );
-                    setAmountOfKar(estimate / PRECISION);
+                    setAmountOfBLOOM(estimate / PRECISION);
                 }
             } catch (err) {
                 if (err?.data?.message?.includes("Zero Liquidity")) {
@@ -35,19 +35,19 @@ export default function ProvideComponent(props) {
         }
     };
 
-    const onChangeAmountOfKar = (e) => {
-        setAmountOfKar(e.target.value);
-        getProvideEstimate("KAR", e.target.value);
+    const onChangeAmountOfBLOOM = (e) => {
+        setAmountOfBLOOM(e.target.value);
+        getProvideEstimate("BLOOM", e.target.value);
     };
 
-    const onChangeAmountOfKothi = (e) => {
-        setAmountOfKothi(e.target.value);
-        getProvideEstimate("KOTHI", e.target.value);
+    const onChangeAmountOfTECH = (e) => {
+        setAmountOfTECH(e.target.value);
+        getProvideEstimate("TECH", e.target.value);
     };
 
     // Adds liquidity to the pool
     const provide = async () => {
-        if (["", "."].includes(amountOfKar) || ["", "."].includes(amountOfKothi)) {
+        if (["", "."].includes(amountOfBLOOM) || ["", "."].includes(amountOfTECH)) {
             alert("Amount should be a valid number");
             return;
         }
@@ -57,12 +57,12 @@ export default function ProvideComponent(props) {
         } else {
             try {
                 let response = await props.contract.provide(
-                    amountOfKar * PRECISION,
-                    amountOfKothi * PRECISION
+                    amountOfBLOOM * PRECISION,
+                    amountOfTECH * PRECISION
                 );
                 await response.wait();
-                setAmountOfKar(0);
-                setAmountOfKothi(0);
+                setAmountOfBLOOM(0);
+                setAmountOfTECH(0);
                 await props.getHoldings();
                 alert("Success");
                 setError("");
@@ -75,17 +75,17 @@ export default function ProvideComponent(props) {
     return (
         <div className="tabBody">
             <BoxTemplate
-                leftHeader={"Amount of KAR"}
-                value={amountOfKar}
-                onChange={(e) => onChangeAmountOfKar(e)}
+                leftHeader={"Amount of BLOOM"}
+                value={amountOfBLOOM}
+                onChange={(e) => onChangeAmountOfBLOOM(e)}
             />
             <div className="swapIcon">
                 <MdAdd />
             </div>
             <BoxTemplate
-                leftHeader={"Amount of KOTHI"}
-                value={amountOfKothi}
-                onChange={(e) => onChangeAmountOfKothi(e)}
+                leftHeader={"Amount of TECH"}
+                value={amountOfTECH}
+                onChange={(e) => onChangeAmountOfTECH(e)}
             />
             <div className="error">{error}</div>
             <div className="bottomDiv">

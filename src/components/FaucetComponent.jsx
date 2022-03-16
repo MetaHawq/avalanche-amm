@@ -4,15 +4,15 @@ import BoxTemplate from "./BoxTemplate";
 import { PRECISION } from "../constants";
 
 export default function FaucetComponent(props) {
-    const [amountOfKar, setAmountOfKar] = useState(0);
-    const [amountOfKothi, setAmountOfKothi] = useState(0);
+    const [amountOfBLOOM, setAmountOfBLOOM] = useState(0);
+    const [amountOfTECH, setAmountOfTECH] = useState(0);
 
-    const onChangeAmountOfKothi = (e) => {
-        setAmountOfKothi(e.target.value);
+    const onChangeAmountOfTECH = (e) => {
+        setAmountOfTECH(e.target.value);
     };
 
-    const onChangeAmountOfKar = (e) => {
-        setAmountOfKar(e.target.value);
+    const onChangeAmountOfBLOOM = (e) => {
+        setAmountOfBLOOM(e.target.value);
     };
 	
     // Funds the account with given amount of Tokens 
@@ -21,19 +21,19 @@ export default function FaucetComponent(props) {
             alert("Connect to Metamask");
             return;
         }
-        if (["", "."].includes(amountOfKar) || ["", "."].includes(amountOfKothi)) {
+        if (["", "."].includes(amountOfBLOOM) || ["", "."].includes(amountOfTECH)) {
             alert("Amount should be a valid number");
             return;
         }
         try {
             let response = await props.contract.faucet(
-                amountOfKar * PRECISION,
-                amountOfKothi * PRECISION
+                amountOfBLOOM * PRECISION,
+                amountOfTECH * PRECISION
             );
             let res = await response.wait();
             console.log("res", res);
-            setAmountOfKar(0);
-            setAmountOfKothi(0);
+            setAmountOfBLOOM(0);
+            setAmountOfTECH(0);
             await props.getHoldings();
             alert("Success");
         } catch (err) {
@@ -45,16 +45,16 @@ export default function FaucetComponent(props) {
     return (
         <div className="tabBody">
             <BoxTemplate
-                leftHeader={"Amount of KAR"}
-                right={"KAR"}
-                value={amountOfKar}
-                onChange={(e) => onChangeAmountOfKar(e)}
+                leftHeader={"Amount of BLOOM"}
+                right={"BLOOM"}
+                value={amountOfBLOOM}
+                onChange={(e) => onChangeAmountOfBLOOM(e)}
             />
             <BoxTemplate
-                leftHeader={"Amount of KOTHI"}
-                right={"KOTHI"}
-                value={amountOfKothi}
-                onChange={(e) => onChangeAmountOfKothi(e)}
+                leftHeader={"Amount of TECH"}
+                right={"TECH"}
+                value={amountOfTECH}
+                onChange={(e) => onChangeAmountOfTECH(e)}
             />
             <div className="bottomDiv">
                 <div className="btn" onClick={() => onClickFund()}>

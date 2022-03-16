@@ -8,11 +8,11 @@ import { PRECISION } from "../constants";
 
 export default function ContainerComponent(props) {
     const [activeTab, setActiveTab] = useState("Swap");
-    const [amountOfKAR, setAmountOfKAR] = useState(0);
-    const [amountOfKOTHI, setAmountOfKOTHI] = useState(0);
+    const [amountOfBLOOM, setAmountOfBLOOM] = useState(0);
+    const [amountOfTECH, setAmountOfTECH] = useState(0);
     const [amountOfShare, setAmountOfShare] = useState(0);
-    const [totalKAR, setTotalKAR] = useState(0);
-    const [totalKOTHI, setTotalKOTHI] = useState(0);
+    const [totalBLOOM, setTotalBLOOM] = useState(0);
+    const [totalTECH, setTotalTECH] = useState(0);
     const [totalShare, setTotalShare] = useState(0);
 
     useEffect(() => {
@@ -24,13 +24,13 @@ export default function ContainerComponent(props) {
         try {
             console.log("Fetching holdings----");
             let response = await props.contract.getMyHoldings();
-            setAmountOfKAR(response.amountToken1 / PRECISION);
-            setAmountOfKOTHI(response.amountToken2 / PRECISION);
+            setAmountOfBLOOM(response.amountToken1 / PRECISION);
+            setAmountOfTECH(response.amountToken2 / PRECISION);
             setAmountOfShare(response.myShare / PRECISION);
 
             response = await props.contract.getPoolDetails();
-            setTotalKAR(response[0] / PRECISION);
-            setTotalKOTHI(response[1] / PRECISION);
+            setTotalBLOOM(response[0] / PRECISION);
+            setTotalTECH(response[1] / PRECISION);
             setTotalShare(response[2] / PRECISION);
         } catch (err) {
             console.log("Couldn't Fetch holdings", err);
@@ -107,12 +107,12 @@ export default function ContainerComponent(props) {
                 <div className="detailsBody">
                     <div className="detailsHeader">Details</div>
                     <div className="detailsRow">
-                        <div className="detailsAttribute">Amount of KAR:</div>
-                        <div className="detailsValue">{amountOfKAR}</div>
+                        <div className="detailsAttribute">Amount of BLOOM:</div>
+                        <div className="detailsValue">{amountOfBLOOM}</div>
                     </div>
                     <div className="detailsRow">
-                        <div className="detailsAttribute">Amount of KOTHI:</div>
-                        <div className="detailsValue">{amountOfKOTHI}</div>
+                        <div className="detailsAttribute">Amount of TECH:</div>
+                        <div className="detailsValue">{amountOfTECH}</div>
                     </div>
                     <div className="detailsRow">
                         <div className="detailsAttribute">Your Share:</div>
@@ -120,12 +120,12 @@ export default function ContainerComponent(props) {
                     </div>
                     <div className="detailsHeader">Pool Details</div>
                     <div className="detailsRow">
-                        <div className="detailsAttribute">Total KAR:</div>
-                        <div className="detailsValue">{totalKAR}</div>
+                        <div className="detailsAttribute">Total BLOOM:</div>
+                        <div className="detailsValue">{totalBLOOM}</div>
                     </div>
                     <div className="detailsRow">
-                        <div className="detailsAttribute">Total KOTHI:</div>
-                        <div className="detailsValue">{totalKOTHI}</div>
+                        <div className="detailsAttribute">Total TECH:</div>
+                        <div className="detailsValue">{totalTECH}</div>
                     </div>
                     <div className="detailsRow">
                         <div className="detailsAttribute">Total Shares:</div>

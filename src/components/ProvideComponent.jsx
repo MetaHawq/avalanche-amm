@@ -9,7 +9,6 @@ export default function ProvideComponent(props) {
     const [amountOfKothi, setAmountOfKothi] = useState(0);
     const [error, setError] = useState("");
 
-    // Gets estimates of a token to be provided in the pool given the amount of other token
     const getProvideEstimate = async (token, value) => {
         if (["", "."].includes(value)) return;
         if (props.contract !== null) {

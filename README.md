@@ -1,4 +1,4 @@
-# avax-amm
+# amm on avax fuji testnet
 
 Steps to run the application in your local machine:-
 * Clone this repo:

@@ -13,3 +13,10 @@ npm install
 ```text
 npm start
 ```
+![Screenshot](amm_1.png)
+-
+![Screenshot](amm_2.png)
+-
+![Screenshot](amm_3.png)
+-
+![Screenshot](amm_4.png)
